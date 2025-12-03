@@ -1,5 +1,1 @@
-import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig(({ mode }) => { const env = loadEnv(mode, process.cwd(), ''); return { server: { host: "0.0.0.0", port: 3000, }, plugins: [react()], base: "./", define: { 'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY), 'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY) }, resolve: { alias: { '@': path.resolve(__dirname, './src'), }, }, } })
+import path from "path"; import { defineConfig, loadEnv } from "vite"; import react from "@vitejs/plugin-react"; export default defineConfig(({ mode }) => { const env = loadEnv(mode, process.cwd(), ""); return { server: { host: "0.0.0.0", port: 3000, }, plugins: [react()], // Vercel에서 정적 리소스 경로 깨짐 방지 base: "./", define: { "process.env.GEMINI_API_KEY": JSON.stringify(env.GEMINI_API_KEY), "process.env.GEMINI_MODEL_NAME": JSON.stringify(env.GEMINI_MODEL_NAME), }, resolve: { alias: { "@": path.resolve(__dirname, "./src"), }, }, }; });
